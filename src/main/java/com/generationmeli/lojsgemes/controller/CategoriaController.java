@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/categoria")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriaController {
 
@@ -27,7 +27,7 @@ public class CategoriaController {
     @GetMapping("/{id}")
     public ResponseEntity<Categoria> getById(@PathVariable Long id){
 
-        return (ResponseEntity<Categoria>) categoriaRepository.findById(id)
+        return categoriaRepository.findById(id)
                 .map(resposta -> ResponseEntity.ok(resposta))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -39,14 +39,14 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> postCategoria(@Valid @RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> postCategoria(@Valid @RequestBody Categoria categoria){
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
     }
 
     @PutMapping
     public ResponseEntity<Categoria> putCategoria(@Valid @RequestBody Categoria categoria) {
 
-        return (ResponseEntity<Categoria>) categoriaRepository.findById(categoria.getId())
+        return categoriaRepository.findById(categoria.getId())
                 .map(resposta -> ResponseEntity.ok().body(categoriaRepository.save(categoria)))
                 .orElse(ResponseEntity.notFound().build());
 
@@ -55,7 +55,7 @@ public class CategoriaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategoria(@PathVariable Long id) {
 
-        return (ResponseEntity<?>) categoriaRepository.findById(id)
+        return categoriaRepository.findById(id)
                 .map(resposta -> {
                     categoriaRepository.deleteById(id);
                     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
