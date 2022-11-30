@@ -23,7 +23,6 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
- //sdposajkpjas
     @NotNull(message = "Tipo é obrigatório!")
     @Size(min = 5)
     private String tipo;
