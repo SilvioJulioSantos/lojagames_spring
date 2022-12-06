@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
-
+    //Atributos da classe categotia 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
